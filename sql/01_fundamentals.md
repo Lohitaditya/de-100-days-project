@@ -110,3 +110,72 @@ CREATE TABLE orders(
 
 - Foreign key references primary key of another table
 - Enforces data integrity
+
+
+# SQL - Day 3
+
+## Filtering Operators
+
+- AND → all conditions must be true
+- OR → any condition can be true
+- NOT → excludes rows
+- IN → cleaner alternative to multiple OR conditions
+- BETWEEN → filters a range (inclusive)
+- LIKE → pattern matching for strings
+
+Example:
+```sql
+SELECT *
+FROM users
+WHERE country IN ('India', 'USA')
+  AND age BETWEEN 20 AND 35;
+
+ORDER BY
+
+Used to sort query results.
+ASC → ascending order (default)
+DESC → descending order
+
+Example:
+SELECT *
+FROM users
+ORDER BY age DESC;
+
+GROUP BY
+
+Used to aggregate data into groups.
+
+Common aggregate functions:
+COUNT()
+SUM()
+AVG()
+
+Example:
+SELECT user_id, COUNT(*) AS total_orders
+FROM orders
+GROUP BY user_id;
+
+Rule:
+
+All selected columns must be either:
+part of GROUP BY, or
+aggregate functions
+
+HAVING
+
+Used to filter aggregated results.
+
+Example:
+SELECT user_id, COUNT(*) AS total_orders
+FROM orders
+GROUP BY user_id
+HAVING COUNT(*) > 2;
+
+WHERE vs HAVING
+
+WHERE → filters rows before grouping
+HAVING → filters groups after aggregation
+
+Execution order:
+FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY
+
